@@ -29,7 +29,7 @@
 						<td><?= $row->tgl_pinjam; ?></td>
 						<td><?= $row->tgl_kembali; ?></td>
 						<td><?= $row->tgl_kembalikan; ?></td>
-						<td><a href="<?= base_url() ?>pengembalian/hapus/<?= $row->id_pengembalian; ?>" class="btn btn-danger btn-xs" onclick="return confirm('Yakin Mau Menghapus ?');">Hapus</a></td>
+						<td><a href="<?= base_url() ?>pengembalian/hapus/<?= $row->id_pengembalian; ?>" class="btn btn-danger btn-xs" onclick="return confirm('Yakin Mau Menghapus ?');"><i class="fa fa-trash"></i> Hapus</a></td>
 					</tr>
 				<?php }
 				?>

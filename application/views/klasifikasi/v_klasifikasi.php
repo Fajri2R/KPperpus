@@ -34,8 +34,8 @@ if (!empty($this->session->flashdata('info'))) { ?>
                         <td><?= $row->id_klasifikasi; ?></td>
                         <td><?= $row->nama_klasifikasi; ?></td>
                         <td>
-                            <a href="<?= base_url() ?>klasifikasi/edit/<?= $row->id_klasifikasi; ?>" class="btn btn-success btn-xs"> Edit</a>
-                            <a href="<?= base_url() ?>klasifikasi/hapus/<?= $row->id_klasifikasi; ?>" class="btn btn-danger btn-xs" onclick="return confirm('Yakin mau menghapus ?');"> Hapus</a>
+                            <a href="<?= base_url() ?>klasifikasi/edit/<?= $row->id_klasifikasi; ?>" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> Edit</a>
+                            <a href="<?= base_url() ?>klasifikasi/hapus/<?= $row->id_klasifikasi; ?>" class="btn btn-danger btn-xs" onclick="return confirm('Yakin mau menghapus ?');"><i class="fa fa-trash"></i> Hapus</a>
                         </td>
                     </tr>
                 <?php }

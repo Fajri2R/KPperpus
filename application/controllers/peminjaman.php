@@ -7,6 +7,9 @@ class Peminjaman extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->library('form_validation');
+		$this->load->library('user_agent');
+		$this->load->helper('fnohp');
+		$this->load->helper('text');
 		$this->load->model('m_peminjaman');
 		if (!$this->session->userdata('username')) {
 			redirect('login');
@@ -36,8 +39,6 @@ class Peminjaman extends CI_Controller
 			$isi['judul']		= 'Form Tambah Peminjaman';
 			$isi['id_peminjaman'] = $this->m_peminjaman->id_peminjaman();
 			$isi['peminjam']	=  $this->m_peminjaman->onlysiswa()->result();
-			// var_dump($isi);
-			// die;
 			$isi['buku']		= $this->db->get('buku')->result();
 			$this->load->view('v_dashboard', $isi);
 		} else {
@@ -60,7 +61,6 @@ class Peminjaman extends CI_Controller
 			$isi['content'] 	= 'peminjaman/t_peminjaman';
 			$isi['judul']		= 'Form Tambah Peminjaman';
 			$isi['id_peminjaman'] = $this->m_peminjaman->id_peminjaman();
-			$only = $this->db->get_where('anggota', ['level' == 2])->row_array();
 			$isi['peminjam']	= $only;
 			$isi['buku']		= $this->db->get('buku')->result();
 			$this->load->view('v_dashboard', $isi);

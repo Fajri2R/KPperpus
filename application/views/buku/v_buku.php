@@ -52,8 +52,8 @@ if ($this->session->userdata('level') == '1') { ?>
 							<td><?= $row->nama_klasifikasi; ?></td>
 							<td><?= $row->jumlah; ?></td>
 							<td>
-								<a href="<?= base_url() ?>buku/edit/<?= $row->id_buku; ?>" class="btn btn-success btn-xs">Edit</a>
-								<a href="<?= base_url() ?>buku/hapus/<?= $row->id_buku; ?>" class="btn btn-danger btn-xs" onclick="return confirm('Yakin Mau Menghapus ?');">Hapus</a>
+								<a href="<?= base_url() ?>buku/edit/<?= $row->id_buku; ?>" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> Edit</a>
+								<a href="<?= base_url() ?>buku/hapus/<?= $row->id_buku; ?>" class="btn btn-danger btn-xs" onclick="return confirm('Yakin Mau Menghapus ?');"><i class="fa fa-trash"></i> Hapus</a>
 							</td>
 						</tr>
 					<?php }

@@ -34,8 +34,8 @@ if (!empty($this->session->flashdata('info'))) { ?>
                         <td><?= $row->id_noinduk; ?></td>
                         <td><?= $row->nomor_induk; ?></td>
                         <td>
-                            <a href="<?= base_url() ?>noinduk/edit/<?= $row->id_noinduk; ?>" class="btn btn-success btn-xs"> Edit</a>
-                            <a href="<?= base_url() ?>noinduk/hapus/<?= $row->id_noinduk; ?>" class="btn btn-danger btn-xs" onclick="return confirm('Yakin mau menghapus ?');"> Hapus</a>
+                            <a href="<?= base_url() ?>noinduk/edit/<?= $row->id_noinduk; ?>" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> Edit</a>
+                            <a href="<?= base_url() ?>noinduk/hapus/<?= $row->id_noinduk; ?>" class="btn btn-danger btn-xs" onclick="return confirm('Yakin mau menghapus ?');"><i class="fa fa-trash"></i> Hapus</a>
                         </td>
                     </tr>
                 <?php }

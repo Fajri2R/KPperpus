@@ -27,6 +27,7 @@ if (!empty($this->session->flashdata('info'))) { ?>
 					<th>Tanggal Pinjam</th>
 					<th>Tanggal Kembali</th>
 					<th>Status</th>
+					<th>Nomor HP (Whatsapp)</th>
 					<th>Aksi</th>
 				</tr>
 			</thead>
@@ -53,9 +54,34 @@ if (!empty($this->session->flashdata('info'))) { ?>
 							}
 							?>
 						</td>
+						<td> <?= hp($row->no_hp); ?> </td>
+						<?php
+						date_default_timezone_set("Asia/Bangkok");
+						$waktu = date("H");
+						if ($waktu < "12") {
+							$salam = "pagi";
+						} elseif ($waktu >= "12" && $waktu < "17") {
+							$salam = "siang";
+						} elseif ($waktu >= "17" && $waktu < "19") {
+							$salam = "sore";
+						} elseif ($waktu >= "19") {
+							$salam = "malam";
+						}
+						$nomor = hp($row->no_hp);
+						$jdlbuku = ($row->judul_buku);
+						$e1 = '%20%F0%9F%98%81%0A%0A';
+						$e2 = '%20%F0%9F%A5%BA.';
+						$e3 = '%20%F0%9F%99%8F%2C';
+						$pesanreal = '&text=' . 'Halo selamat ' . $salam . $e1 . 'Ini dari perpustakaan, ingin mengingatkan bahwa waktu pinjam buku berjudul ' . $jdlbuku . ' telah habis' . $e2 . ' Mohon segera dikembalikan' . $e3 . ' terima kasih';
+						$penutup = '%0A%0ASalam hangat dari Petugas Perpustakaan%20%F0%9F%98%89';
+						if ($this->agent->is_mobile()) $linkWA = 'https://api.whatsapp.com/send?phone=' . $nomor . $pesan . $penutup;
+						// tapi kalau desktop pakai web.whatsapp.com
+						else $linkWA = 'https://web.whatsapp.com/send?phone=' . $nomor . $pesanreal . $penutup;
+						?>
 						<td>
-							<a href="<?= base_url() ?>peminjaman/kembalikan/<?= $row->id_pm; ?>" class="btn btn-primary btn-xs" onclick="return confirm('Yakin User ini sudah mengembalikan buku ?');"> Kembalikan</a>
-							<a href="<?= base_url() ?>peminjaman/hapus/<?= $row->id_pm; ?>" class="btn btn-danger btn-xs" onclick="return confirm('Yakin Mau Menghapus ?');">Hapus</a>
+							<a href="<?php echo $linkWA ?>" target="_blank" class="btn btn-success btn-xs" onclick="return confirm('Kirim Notifikasi Pengembalian Buku ke User ini ?');"><i class="fa fa-whatsapp"></i> Notifikasi</a>
+							<a href="<?= base_url() ?>peminjaman/kembalikan/<?= $row->id_pm; ?>" class="btn btn-primary btn-xs" onclick="return confirm('Yakin User ini sudah mengembalikan buku ?');"><i class="fa fa-undo"></i> Kembalikan</a>
+							<a href="<?= base_url() ?>peminjaman/hapus/<?= $row->id_pm; ?>" class="btn btn-danger btn-xs" onclick="return confirm('Yakin Mau Menghapus ?');"><i class="fa fa-trash"></i> Hapus</a>
 						</td>
 
 					</tr>

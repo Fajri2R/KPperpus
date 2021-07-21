@@ -42,11 +42,11 @@ if (!empty($this->session->flashdata('info'))) { ?>
 						<td style="text-transform: capitalize;"><?= $row->nama; ?></td>
 						<td><?= $row->jenkel; ?></td>
 						<td><?= $row->alamat; ?></td>
-						<td><?= $row->no_hp; ?></td>
+						<td><?= hp($row->no_hp); ?></td>
 						<td><?= $row->level == 1 ? "Admin" : "Siswa" ?></td>
 						<td>
-							<a href="<?= base_url() ?>anggota/edit/<?= $row->id_anggota; ?>" class="btn btn-success btn-xs">Edit</a>
-							<a href="<?= base_url() ?>anggota/hapus/<?= $row->id_anggota; ?>" class="btn btn-danger btn-xs" onclick="return confirm('Yakin ingin mau menghapus user ini?');">Hapus</a>
+							<a href="<?= base_url() ?>anggota/edit/<?= $row->id_anggota; ?>" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> Edit</a>
+							<a href="<?= base_url() ?>anggota/hapus/<?= $row->id_anggota; ?>" class="btn btn-danger btn-xs" onclick="return confirm('Yakin ingin mau menghapus user ini?');"><i class="fa fa-trash"></i> Hapus</a>
 						</td>
 					</tr>
 				<?php }

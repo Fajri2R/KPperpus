@@ -34,8 +34,8 @@ if (!empty($this->session->flashdata('info'))) { ?>
 						<td><?= $row->id_penerbit; ?></td>
 						<td><?= $row->nama_penerbit; ?></td>
 						<td>
-							<a href="<?= base_url() ?>penerbit/edit/<?= $row->id_penerbit; ?>" class="btn btn-success btn-xs">Edit</a>
-							<a href="<?= base_url() ?>penerbit/hapus/<?= $row->id_penerbit; ?>" class="btn btn-danger btn-xs" onclick="return confirm('Yakin Mau Menghapus ?');">Hapus</a>
+							<a href="<?= base_url() ?>penerbit/edit/<?= $row->id_penerbit; ?>" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> Edit</a>
+							<a href="<?= base_url() ?>penerbit/hapus/<?= $row->id_penerbit; ?>" class="btn btn-danger btn-xs" onclick="return confirm('Yakin Mau Menghapus ?');"><i class="fa fa-trash"></i> Hapus</a>
 						</td>
 					</tr>
 				<?php }

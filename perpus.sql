@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 21, 2021 at 02:32 PM
+-- Generation Time: Jul 21, 2021 at 05:56 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.15
 
@@ -47,9 +47,10 @@ CREATE TABLE `anggota` (
 
 INSERT INTO `anggota` (`id_anggota`, `nama`, `jenkel`, `alamat`, `no_hp`, `username`, `password`, `image`, `level`, `active`) VALUES
 ('US001', 'Rubentus Hutapea', 'Laki-laki', ' ', '51232123321', 'ruben', '$2y$10$s3RQxAr0sTBncbS57jsGvum8PfiwaOzjaLQvjigP3Ya7NiwcTjH6a', 'default.jpg', 1, 1),
-('US002', 'Deva', 'Laki-laki', ' ', '0878787871123', 'deva', '$2y$10$AdNGYIuhq5F4Est1UXwjyuNzzLQofL5AiBJiEz5uYHmYxKmb/C5I6', 'test2.png', 2, 1),
+('US002', 'Deva', 'Laki-laki', ' ', '082173109732', 'deva', '$2y$10$AdNGYIuhq5F4Est1UXwjyuNzzLQofL5AiBJiEz5uYHmYxKmb/C5I6', 'test2.png', 2, 1),
 ('US003', 'Fajri', 'Laki-laki', ' ', '08771231234232', 'fajri', '$2y$10$BHyUlS.dk9e1sI6tGNZ5N.Jmj1Qbxc97NZl7o8oWg7CGIlu3vqZkS', 'default.jpg', 2, 1),
-('US004', 'Denny', 'Perempuan', ' ', '087456446127531', 'denny', '$2y$10$KOG3PeFF/85DsdBzIjzH1.c2pAEdx3wRhbFHFp/U0kejx/I4dDxbe', 'default.jpg', 1, 1);
+('US004', 'Denny', 'Perempuan', ' ', '087456446127531', 'denny', '$2y$10$KOG3PeFF/85DsdBzIjzH1.c2pAEdx3wRhbFHFp/U0kejx/I4dDxbe', 'default.jpg', 1, 1),
+('US005', 'Hafiz', 'Laki-laki', ' ', '1231421313', 'hafiz', '$2y$10$hztFvBGRfJtwHiEspi0UGOsCcgHOsne4O/M4WyntT.gaL8OHQ8Z2S', 'default.jpg', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -70,14 +71,6 @@ CREATE TABLE `buku` (
   `jumlah` int(10) NOT NULL,
   `tgl_terima` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `buku`
---
-
-INSERT INTO `buku` (`id_buku`, `id_pengarang`, `id_penerbit`, `id_noinduk`, `id_klasifikasi`, `judul_buku`, `tahun_terbit`, `cetakan`, `sumber`, `jumlah`, `tgl_terima`) VALUES
-('BK001', 6, 5, 5, 4, 'Reproduksi', 2000, 19, 'Nasdem', 3, '2021-07-07'),
-('BK002', 6, 5, 5, 4, 'Testt', 2000, 2, 'DImana?', 3, '2021-07-14');
 
 -- --------------------------------------------------------
 
@@ -112,7 +105,8 @@ CREATE TABLE `peminjaman` (
   `id_anggota` varchar(10) NOT NULL,
   `id_buku` varchar(10) NOT NULL,
   `tgl_pinjam` date NOT NULL,
-  `tgl_kembali` date NOT NULL
+  `tgl_kembali` date NOT NULL,
+  `no_hp` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -123,7 +117,7 @@ CREATE TRIGGER `jml_after_pinjam` AFTER INSERT ON `peminjaman` FOR EACH ROW upda
 $$
 DELIMITER ;
 DELIMITER $$
-CREATE TRIGGER `jml_before_delete` AFTER DELETE ON `peminjaman` FOR EACH ROW update buku set buku.jumlah = buku.jumlah +1 where buku.id_buku = id_buku
+CREATE TRIGGER `jml_before_delete` AFTER DELETE ON `peminjaman` FOR EACH ROW update buku set buku.jumlah = buku.jumlah +1 where buku.id_buku = old.id_buku
 $$
 DELIMITER ;
 
@@ -224,7 +218,7 @@ ALTER TABLE `pengembalian`
 -- AUTO_INCREMENT for table `klasifikasi`
 --
 ALTER TABLE `klasifikasi`
-  MODIFY `id_klasifikasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_klasifikasi` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `noinduk`

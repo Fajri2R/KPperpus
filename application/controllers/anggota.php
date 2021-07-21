@@ -7,6 +7,7 @@ class Anggota extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->library('form_validation');
+		$this->load->helper('fnohp');
 		$this->load->model('m_anggota');
 		if (!$this->session->userdata('username')) {
 			redirect('login');
@@ -73,9 +74,9 @@ class Anggota extends CI_Controller
 		$this->form_validation->set_rules('jenkel', 'Jenis Kelamin', 'required', [
 			'required'      => 'Kamu belum memilih %s',
 		]);
-		$this->form_validation->set_rules('no_hp', 'Nomor HP', 'required|trim|min_length[10]', [
+		$this->form_validation->set_rules('no_hp', 'Nomor HP', 'required|trim|min_length[11]', [
 			'required'      => 'Kamu belum menginput %s',
-			'min_length'    => 'Cek kembali Nomor HP yang diinput, min. 10 digit',
+			'min_length'    => 'Cek kembali Nomor HP yang diinput, min. 11 digit dimulai dari 0',
 		]);
 		$this->form_validation->set_rules('level', 'Level', 'required', [
 			'required'      => 'Kamu belum memilih %s',
@@ -130,9 +131,9 @@ class Anggota extends CI_Controller
 		$this->form_validation->set_rules('username', 'Username', 'required|trim', [
 			'required'      => 'Kamu belum menginput %s',
 		]);
-		$this->form_validation->set_rules('no_hp', 'Nomor HP', 'required|trim|min_length[10]', [
+		$this->form_validation->set_rules('no_hp', 'Nomor HP', 'required|trim|min_length[11]', [
 			'required'      => 'Kamu belum menginput %s',
-			'min_length'    => 'Cek kembali Nomor HP yang diinput, min. 10 digit',
+			'min_length'    => 'Cek kembali Nomor HP yang diinput, min. 11 digit dimulai dari 0',
 		]);
 		if ($this->form_validation->run() == false) {
 			if ($this->session->userdata('level') == '1') {
