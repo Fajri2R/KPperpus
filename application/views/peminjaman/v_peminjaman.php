@@ -54,7 +54,7 @@ if (!empty($this->session->flashdata('info'))) { ?>
 							?>
 						</td>
 						<td>
-							<a href="<?= base_url() ?>peminjaman/kembalikan/<?= $row->id_pm; ?>" class="btn btn-primary btn-xs" onclick="return confirm('Yakin Buku ini Mau di Kembalikan ?');"> Kembalikan</a>
+							<a href="<?= base_url() ?>peminjaman/kembalikan/<?= $row->id_pm; ?>" class="btn btn-primary btn-xs" onclick="return confirm('Yakin User ini sudah mengembalikan buku ?');"> Kembalikan</a>
 							<a href="<?= base_url() ?>peminjaman/hapus/<?= $row->id_pm; ?>" class="btn btn-danger btn-xs" onclick="return confirm('Yakin Mau Menghapus ?');">Hapus</a>
 						</td>
 

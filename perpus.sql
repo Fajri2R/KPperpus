@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 17, 2021 at 01:30 PM
+-- Generation Time: Jul 21, 2021 at 02:32 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.15
 
@@ -46,9 +46,10 @@ CREATE TABLE `anggota` (
 --
 
 INSERT INTO `anggota` (`id_anggota`, `nama`, `jenkel`, `alamat`, `no_hp`, `username`, `password`, `image`, `level`, `active`) VALUES
-('US001', 'Rubentus Hutapea', 'Laki-laki', ' ', '51232', 'ruben', '$2y$10$hM6DeXOV8XsNDiob6Teki.F/HXg1LxHRxvN7xWu.hZtlQZAb/cco.', 'default.jpg', 1, 1),
-('US002', 'Deva Triawan', 'Laki-laki', ' ', '4123123', 'deva  ', '$2y$10$rEKCz/HMlzAexDZdYlwqbujqS8K/5QqjcRi6wiYdympT8iramiavy', 'default.jpg', 2, 1),
-('US003', 'Fajri', 'Laki-laki', ' paal merah', '082173109732', 'fajri', '$2y$10$zhSInDJE4RD9IO1DeOH3berVVzWmKv/u.JtmpIbpR.EcAh6nAUFIG', 'default.jpg', 1, 0);
+('US001', 'Rubentus Hutapea', 'Laki-laki', ' ', '51232123321', 'ruben', '$2y$10$s3RQxAr0sTBncbS57jsGvum8PfiwaOzjaLQvjigP3Ya7NiwcTjH6a', 'default.jpg', 1, 1),
+('US002', 'Deva', 'Laki-laki', ' ', '0878787871123', 'deva', '$2y$10$AdNGYIuhq5F4Est1UXwjyuNzzLQofL5AiBJiEz5uYHmYxKmb/C5I6', 'test2.png', 2, 1),
+('US003', 'Fajri', 'Laki-laki', ' ', '08771231234232', 'fajri', '$2y$10$BHyUlS.dk9e1sI6tGNZ5N.Jmj1Qbxc97NZl7o8oWg7CGIlu3vqZkS', 'default.jpg', 2, 1),
+('US004', 'Denny', 'Perempuan', ' ', '087456446127531', 'denny', '$2y$10$KOG3PeFF/85DsdBzIjzH1.c2pAEdx3wRhbFHFp/U0kejx/I4dDxbe', 'default.jpg', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -75,7 +76,8 @@ CREATE TABLE `buku` (
 --
 
 INSERT INTO `buku` (`id_buku`, `id_pengarang`, `id_penerbit`, `id_noinduk`, `id_klasifikasi`, `judul_buku`, `tahun_terbit`, `cetakan`, `sumber`, `jumlah`, `tgl_terima`) VALUES
-('BK001', 6, 5, 5, 4, 'Reproduksi', 2000, 19, 'Nasdem', 68, '2021-07-07');
+('BK001', 6, 5, 5, 4, 'Reproduksi', 2000, 19, 'Nasdem', 3, '2021-07-07'),
+('BK002', 6, 5, 5, 4, 'Testt', 2000, 2, 'DImana?', 3, '2021-07-14');
 
 -- --------------------------------------------------------
 
@@ -88,13 +90,6 @@ CREATE TABLE `klasifikasi` (
   `nama_klasifikasi` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `klasifikasi`
---
-
-INSERT INTO `klasifikasi` (`id_klasifikasi`, `nama_klasifikasi`) VALUES
-(4, 'Ah');
-
 -- --------------------------------------------------------
 
 --
@@ -105,13 +100,6 @@ CREATE TABLE `noinduk` (
   `id_noinduk` int(11) NOT NULL,
   `nomor_induk` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `noinduk`
---
-
-INSERT INTO `noinduk` (`id_noinduk`, `nomor_induk`) VALUES
-(5, '123');
 
 -- --------------------------------------------------------
 
@@ -128,17 +116,14 @@ CREATE TABLE `peminjaman` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `peminjaman`
---
-
-INSERT INTO `peminjaman` (`id_pm`, `id_anggota`, `id_buku`, `tgl_pinjam`, `tgl_kembali`) VALUES
-('PM001', 'US002', 'BK001', '2021-07-17', '2021-07-24');
-
---
 -- Triggers `peminjaman`
 --
 DELIMITER $$
 CREATE TRIGGER `jml_after_pinjam` AFTER INSERT ON `peminjaman` FOR EACH ROW update buku set buku.jumlah = buku.jumlah -1 where buku.id_buku = new.id_buku
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `jml_before_delete` AFTER DELETE ON `peminjaman` FOR EACH ROW update buku set buku.jumlah = buku.jumlah +1 where buku.id_buku = id_buku
 $$
 DELIMITER ;
 
@@ -153,13 +138,6 @@ CREATE TABLE `penerbit` (
   `nama_penerbit` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `penerbit`
---
-
-INSERT INTO `penerbit` (`id_penerbit`, `nama_penerbit`) VALUES
-(5, 'Gelud');
-
 -- --------------------------------------------------------
 
 --
@@ -170,13 +148,6 @@ CREATE TABLE `pengarang` (
   `id_pengarang` int(11) NOT NULL,
   `nama_pengarang` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `pengarang`
---
-
-INSERT INTO `pengarang` (`id_pengarang`, `nama_pengarang`) VALUES
-(6, 'Asw');
 
 -- --------------------------------------------------------
 
@@ -259,25 +230,25 @@ ALTER TABLE `klasifikasi`
 -- AUTO_INCREMENT for table `noinduk`
 --
 ALTER TABLE `noinduk`
-  MODIFY `id_noinduk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_noinduk` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `penerbit`
 --
 ALTER TABLE `penerbit`
-  MODIFY `id_penerbit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_penerbit` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pengarang`
 --
 ALTER TABLE `pengarang`
-  MODIFY `id_pengarang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_pengarang` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pengembalian`
 --
 ALTER TABLE `pengembalian`
-  MODIFY `id_pengembalian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_pengembalian` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
