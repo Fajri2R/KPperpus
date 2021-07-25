@@ -10,8 +10,11 @@ if ($this->session->userdata('level') == '1') { ?>
           <img src="<?= base_url('assets/dist/img/') . $user['image'] ?> " class=" img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <?= $user['nama']; ?>
+          <p><?= $user['nama']; ?></p>
+          <div style="font-size: 14px; color: rgba(255, 255, 255, 0.9);"><?= $user['level'] == 1 ? "Admin" : "Siswa" ?></div>
+          <a><i class="fa fa-circle text-success"></i> Online</a>
         </div>
+
       </div>
 
       <!-- sidebar menu: : style can be found in sidebar.less -->
@@ -103,7 +106,9 @@ if ($this->session->userdata('level') == '1') { ?>
           <img src="<?= base_url('assets/dist/img/') . $user['image'] ?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <?= $user['nama']; ?>
+          <p><?= $user['nama']; ?></p>
+          <div style="font-size: 14px; color: rgba(255, 255, 255, 0.9);"><?= $user['level'] == 1 ? "Admin" : "Siswa" ?></div>
+          <a><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
 
@@ -119,6 +124,19 @@ if ($this->session->userdata('level') == '1') { ?>
           <a href="<?= base_url() ?>buku">
             <i class="fa fa-book"></i> <span>Daftar Buku</span>
           </a>
+        </li>
+        <li class="treeview <?= $this->uri->segment(1) == 'peminjaman' || $this->uri->segment(1) == 'pengembalian' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
+          <a href="#">
+            <i class="fa fa-area-chart"></i>
+            <span style="white-space: normal;">Transaksi Semua User</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li <?= $this->uri->segment(1) == 'peminjaman' || $this->uri->segment(1) == '' ? 'class="active"' : '' ?>><a style="white-space: normal;" href="<?= base_url() ?>peminjaman"><i class="fa fa-circle-o"></i> Buku yang sedang dipinjam</a></li>
+            <li <?= $this->uri->segment(1) == 'pengembalian' || $this->uri->segment(1) == '' ? 'class="active"' : '' ?>><a style="white-space: normal;" href="<?= base_url() ?>pengembalian"><i class="fa fa-circle-o"></i> Buku yang sudah dikembalikan</a></li>
+          </ul>
         </li>
 
         <hr>

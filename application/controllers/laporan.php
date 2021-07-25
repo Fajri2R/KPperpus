@@ -37,26 +37,22 @@ class Laporan extends CI_Controller
 
 			$this->load->view('v_dashboard', $isi);
 		} else {
-			redirect('buku');
+			redirect('dashboard');
 		}
 	}
 
-	// public function refresh()
-	// {
-	// 	$isi['content']	= 'laporan/v_peminjaman';
-	// 	$isi['judul']	= 'Laporan Peminjaman';
-	// 	$isi['data']	= $this->m_laporan->getAllData();
-	// 	$this->load->view('v_dashboard', $isi);	
-	// }
-
 	public function pdf_peminjaman()
 	{
-		if (empty($this->session->userdata('tanggal_awal')) || empty($this->session->userdata('tanggal_ahir'))) {
-			$isi['data'] = $this->m_laporan->getAllData();
-			$this->load->view('laporan/pdf_peminjaman', $isi);
+		if ($this->session->userdata('level') == '1') {
+			if (empty($this->session->userdata('tanggal_awal')) || empty($this->session->userdata('tanggal_ahir'))) {
+				$isi['data'] = $this->m_laporan->getAllData();
+				$this->load->view('laporan/pdf_peminjaman', $isi);
+			} else {
+				$isi['data'] = $this->m_laporan->filterData($this->session->userdata('tanggal_awal'), $this->session->userdata('tanggal_ahir'));
+				$this->load->view('laporan/pdf_peminjaman', $isi);
+			}
 		} else {
-			$isi['data'] = $this->m_laporan->filterData($this->session->userdata('tanggal_awal'), $this->session->userdata('tanggal_ahir'));
-			$this->load->view('laporan/pdf_peminjaman', $isi);
+			redirect('dashboard');
 		}
 	}
 
@@ -83,18 +79,22 @@ class Laporan extends CI_Controller
 
 			$this->load->view('v_dashboard', $isi);
 		} else {
-			redirect('buku');
+			redirect('dashboard');
 		}
 	}
 
 	public function pdf_databuku()
 	{
-		if (empty($this->session->userdata('tanggal_awal')) || empty($this->session->userdata('tanggal_ahir'))) {
-			$isi['data'] = $this->m_laporan->getAllData1();
-			$this->load->view('laporan/pdf_databuku', $isi);
+		if ($this->session->userdata('level') == '1') {
+			if (empty($this->session->userdata('tanggal_awal')) || empty($this->session->userdata('tanggal_ahir'))) {
+				$isi['data'] = $this->m_laporan->getAllData1();
+				$this->load->view('laporan/pdf_databuku', $isi);
+			} else {
+				$isi['data'] = $this->m_laporan->filterData1($this->session->userdata('tanggal_awal'), $this->session->userdata('tanggal_ahir'));
+				$this->load->view('laporan/pdf_databuku', $isi);
+			}
 		} else {
-			$isi['data'] = $this->m_laporan->filterData1($this->session->userdata('tanggal_awal'), $this->session->userdata('tanggal_ahir'));
-			$this->load->view('laporan/pdf_databuku', $isi);
+			redirect('dashboard');
 		}
 	}
 }

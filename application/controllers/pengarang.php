@@ -22,7 +22,7 @@ class Pengarang extends CI_Controller
 			$isi['data']	= $this->db->get('pengarang')->result();
 			$this->load->view('v_dashboard', $isi);
 		} else {
-			redirect('buku');
+			redirect('dashboard');
 		}
 	}
 
@@ -34,46 +34,62 @@ class Pengarang extends CI_Controller
 			$isi['judul'] 	= 'Form Tambah Pengarang';
 			$this->load->view('v_dashboard', $isi);
 		} else {
-			redirect('buku');
+			redirect('dashboard');
 		}
 	}
 
 	public function simpan()
 	{
-		$data['nama_pengarang'] = ucwords($this->input->post('nama_pengarang'));
-		$query = $this->db->insert('pengarang', $data);
-		if ($query = true) {
-			$this->session->set_flashdata('info', 'Data Berhasil di Simpan');
-			redirect('pengarang');
+		if ($this->session->userdata('level') == '1') {
+			$data['nama_pengarang'] = ucwords($this->input->post('nama_pengarang'));
+			$query = $this->db->insert('pengarang', $data);
+			if ($query = true) {
+				$this->session->set_flashdata('info', 'Data Berhasil di Simpan');
+				redirect('pengarang');
+			}
+		} else {
+			redirect('dashboard');
 		}
 	}
 
 	public function edit($id)
 	{
-		$isi['user'] = $this->db->get_where('anggota', ['username' => $this->session->userdata('username')])->row_array();
-		$isi['content'] = 'pengarang/edit_pengarang';
-		$isi['judul'] 	= 'Form Edit Pengarang';
-		$isi['data'] 	= $this->m_pengarang->edit($id);
-		$this->load->view('v_dashboard', $isi);
+		if ($this->session->userdata('level') == '1') {
+			$isi['user'] = $this->db->get_where('anggota', ['username' => $this->session->userdata('username')])->row_array();
+			$isi['content'] = 'pengarang/edit_pengarang';
+			$isi['judul'] 	= 'Form Edit Pengarang';
+			$isi['data'] 	= $this->m_pengarang->edit($id);
+			$this->load->view('v_dashboard', $isi);
+		} else {
+			redirect('dashboard');
+		}
 	}
 
 	public function update()
 	{
-		$id_pengarang 			= $this->input->post('id_pengarang');
-		$data['nama_pengarang'] = ucwords($this->input->post('nama_pengarang'));
-		$query = $this->m_pengarang->update($id_pengarang, $data);
-		if ($query = true) {
-			$this->session->set_flashdata('info', 'Data Berhasil di Update');
-			redirect('pengarang');
+		if ($this->session->userdata('level') == '1') {
+			$id_pengarang 			= $this->input->post('id_pengarang');
+			$data['nama_pengarang'] = ucwords($this->input->post('nama_pengarang'));
+			$query = $this->m_pengarang->update($id_pengarang, $data);
+			if ($query = true) {
+				$this->session->set_flashdata('info', 'Data Berhasil di Update');
+				redirect('pengarang');
+			}
+		} else {
+			redirect('dashboard');
 		}
 	}
 
 	public function hapus($id)
 	{
-		$query = $this->m_pengarang->hapus($id);
-		if ($query = true) {
-			$this->session->set_flashdata('info', 'Data Berhasil di Hapus');
-			redirect('pengarang');
+		if ($this->session->userdata('level') == '1') {
+			$query = $this->m_pengarang->hapus($id);
+			if ($query = true) {
+				$this->session->set_flashdata('info', 'Data Berhasil di Hapus');
+				redirect('pengarang');
+			}
+		} else {
+			redirect('dashboard');
 		}
 	}
 }

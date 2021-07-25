@@ -20,7 +20,7 @@ if ($this->session->userdata('level') == '1') { ?>
     <!-- ./col -->
     <div class="col-lg-6 col-xs-6">
       <!-- small box -->
-      <div class="small-box bg-green">
+      <div class="small-box bg-blue">
         <div class="inner">
           <h3><?= $buku; ?></h3>
 
@@ -36,7 +36,7 @@ if ($this->session->userdata('level') == '1') { ?>
 
     <div class="col-lg-6 col-xs-6">
       <!-- small box -->
-      <div class="small-box bg-yellow">
+      <div class="small-box bg-green">
         <div class="inner">
           <h3><?= $pinjam; ?></h3>
 
@@ -113,32 +113,35 @@ if ($this->session->userdata('level') == '1') { ?>
     <div class="card-body">
       <blockquote>
         <h2>
-          Visi Universitas Dinamika Bangsa
+          Visi SMA Pelita Raya Kota Jambi
         </h2>
         <p>
-          “Menjadi Universitas yang unggul dan kompetitif dibidang Teknologi Informasi, Kewirausahaan dan Bisnis ditingkat Nasional.”
+          “Menjadi lembaga unggulan dalam prestasi akademik dan non akademik, handal dalam kemampuan komunikasi dan IPTEK, santun dalam bersikap, berkepribadian dan keluhuran budi”
         </p>
         <h2>
-          Misi Universitas Dinamika Bangsa
+          Misi SMA Pelita Raya Kota Jambi
         </h2>
         <p>
-          Misi Universitas Dinamika Bangsa adalah :
+          Misi SMA Pelita Raya Kota Jambi adalah :
         </p>
         <ol>
           <li>
-            Meningkatkan peran serta universitas dalam menghasilkan sumber daya manusia yang memiliki kecerdasan intelektual, emosional dan spiritual.
+            Pembelajaran menggunakan Kurikulum yang sedang berjalan saat ini dengan motto <i>Learning by Doing</i>.
           </li>
           <li>
-            Menyelenggarakan Tri Dharma Perguruan Tinggi.
+            Melengkapi sarana dan prasarana pembelajaran dengan baik.
           </li>
           <li>
-            Membangun kerjasama dengan lembaga pendidikan tinggi maupun dunia industri.
+            Mendidik warga sekolah agar memiliki akhlak mulia dan berbudi pekerti luhur.
           </li>
           <li>
-            Menyelenggarakan pengelolaan pendidikan yang profesional dan akuntabel.
+            Menumbuhkan semangat untuk meningkatkan kompetensi akademik secara seimbang dan selaras antara ranah kognitif, afektif, dan psikomotor untuk berani bersaing di setiap event kompetensi secara jujur dan sportif.
+          </li>
+          <li>
+            Menumbuh kembangkan penghayatan terhadap agama yang dianut, olahraga, kesehatan jasmani dan rohani, seni budaya, serta keterampilan sehingga menghasilkan kearifan dalam berpikir dan bertindak, sifat sportifitas jujur, berjiwa besar, dan memiliki rasa estetis yang harmonis di lingkungan keluarga, sekolah, masyarakat, dan negara.
           </li>
         </ol>
-        <h2>
+        <!-- <h2>
           Tujuan Universitas Dinamika Bangsa
         </h2>
         <p>
@@ -157,7 +160,7 @@ if ($this->session->userdata('level') == '1') { ?>
             Mewujudkan tata kelola universitas yang baik
             </p>
           </li>
-        </ol>
+        </ol> -->
       </blockquote>
 
     </div>

@@ -13,8 +13,6 @@ class Dashboard extends CI_Controller
 	public function index()
 	{
 		$isi['user'] = $this->db->get_where('anggota', ['username' => $this->session->userdata('username')])->row_array();
-
-
 		$isi['content'] 	= 'v_home';
 		$isi['judul']		= 'Dashboard';
 		$this->load->model('m_dashboard');

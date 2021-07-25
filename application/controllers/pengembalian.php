@@ -23,16 +23,25 @@ class Pengembalian extends CI_Controller
 			$isi['data']	= $this->m_pengembalian->getAllData();
 			$this->load->view('v_dashboard', $isi);
 		} else {
-			redirect('buku');
+			$isi['content'] = 'pengembalian/v_pengembalian1';
+			$isi['judul']	= 'Buku yang sudah dikembalikan';
+			$isi['title']	= 'Data Pengembalian';
+			$this->load->model('m_pengembalian');
+			$isi['data']	= $this->m_pengembalian->getAllData();
+			$this->load->view('v_dashboard', $isi);
 		}
 	}
 
 	public function hapus($id)
 	{
-		$query = $this->m_pengembalian->hapus($id);
-		if ($query = true) {
-			$this->session->set_flashdata('info', 'Data Berhasil di Hapus');
-			redirect('pengembalian');
+		if ($this->session->userdata('level') == '1') {
+			$query = $this->m_pengembalian->hapus($id);
+			if ($query = true) {
+				$this->session->set_flashdata('info', 'Data Berhasil di Hapus');
+				redirect('pengembalian');
+			}
+		} else {
+			redirect('dashboard');
 		}
 	}
 }

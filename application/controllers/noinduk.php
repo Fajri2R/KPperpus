@@ -22,7 +22,7 @@ class Noinduk extends CI_Controller
             $isi['data']     = $this->db->get('noinduk')->result();
             $this->load->view('v_dashboard', $isi);
         } else {
-            redirect('buku');
+            redirect('dashboard');
         }
     }
 
@@ -34,46 +34,62 @@ class Noinduk extends CI_Controller
             $isi['judul']    = 'Form Tambah Nomor Induk';
             $this->load->view('v_dashboard', $isi);
         } else {
-            redirect('buku');
+            redirect('dashboard');
         }
     }
 
     public function simpan()
     {
-        $data['nomor_induk'] = strtoupper($this->input->post('nomor_induk'));
-        $query = $this->db->insert('noinduk', $data);
-        if ($query = true) {
-            $this->session->set_flashdata('info', 'Data Berhasil di Simpan');
-            redirect('noinduk');
+        if ($this->session->userdata('level') == '1') {
+            $data['nomor_induk'] = strtoupper($this->input->post('nomor_induk'));
+            $query = $this->db->insert('noinduk', $data);
+            if ($query = true) {
+                $this->session->set_flashdata('info', 'Data Berhasil di Simpan');
+                redirect('noinduk');
+            }
+        } else {
+            redirect('dashboard');
         }
     }
 
     public function edit($id)
     {
-        $isi['user'] = $this->db->get_where('anggota', ['username' => $this->session->userdata('username')])->row_array();
-        $isi['content'] = 'noinduk/edit_noinduk';
-        $isi['judul']    = 'Form Edit Nomor Induk';
-        $isi['data']    = $this->m_noinduk->edit($id);
-        $this->load->view('v_dashboard', $isi);
+        if ($this->session->userdata('level') == '1') {
+            $isi['user'] = $this->db->get_where('anggota', ['username' => $this->session->userdata('username')])->row_array();
+            $isi['content'] = 'noinduk/edit_noinduk';
+            $isi['judul']    = 'Form Edit Nomor Induk';
+            $isi['data']    = $this->m_noinduk->edit($id);
+            $this->load->view('v_dashboard', $isi);
+        } else {
+            redirect('dashboard');
+        }
     }
 
     public function update()
     {
-        $id_noinduk           = $this->input->post('id_noinduk');
-        $data['nomor_induk']     = strtoupper($this->input->post('nomor_induk'));
-        $query = $this->m_noinduk->update($id_noinduk, $data);
-        if ($query = true) {
-            $this->session->set_flashdata('info', 'Data Berhasil di Update');
-            redirect('noinduk');
+        if ($this->session->userdata('level') == '1') {
+            $id_noinduk           = $this->input->post('id_noinduk');
+            $data['nomor_induk']     = strtoupper($this->input->post('nomor_induk'));
+            $query = $this->m_noinduk->update($id_noinduk, $data);
+            if ($query = true) {
+                $this->session->set_flashdata('info', 'Data Berhasil di Update');
+                redirect('noinduk');
+            }
+        } else {
+            redirect('dashboard');
         }
     }
 
     public function hapus($id)
     {
-        $query = $this->m_noinduk->hapus($id);
-        if ($query = true) {
-            $this->session->set_flashdata('info', 'Data Berhasil di Hapus');
-            redirect('noinduk');
+        if ($this->session->userdata('level') == '1') {
+            $query = $this->m_noinduk->hapus($id);
+            if ($query = true) {
+                $this->session->set_flashdata('info', 'Data Berhasil di Hapus');
+                redirect('noinduk');
+            }
+        } else {
+            redirect('dashboard');
         }
     }
 }

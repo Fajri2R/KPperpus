@@ -1,7 +1,10 @@
 		<div class="login-box">
 			<div class="login-logo">
-				Perpustakaan
+
 			</div>
+			<br>
+			<br>
+			<br>
 			<!-- /.login-logo -->
 			<div class="login-box-body">
 				<p class="login-box-msg login">Selamat Datang</p>

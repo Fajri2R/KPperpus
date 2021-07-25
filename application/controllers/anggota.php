@@ -25,7 +25,7 @@ class Anggota extends CI_Controller
 			$isi['data']	= $this->m_anggota->onlysiswa()->result();
 			$this->load->view('v_dashboard', $isi);
 		} else {
-			redirect('buku');
+			redirect('dashboard');
 		}
 	}
 
@@ -38,7 +38,7 @@ class Anggota extends CI_Controller
 			$isi['id_anggota'] 	= $this->m_anggota->id_anggota();
 			$this->load->view('v_dashboard', $isi);
 		} else {
-			redirect('buku');
+			redirect('dashboard');
 		}
 	}
 
@@ -52,7 +52,7 @@ class Anggota extends CI_Controller
 			$isi['data']	= $this->m_anggota->onlyadmin()->result();
 			$this->load->view('v_dashboard', $isi);
 		} else {
-			redirect('buku');
+			redirect('dashboard');
 		}
 	}
 
@@ -82,11 +82,15 @@ class Anggota extends CI_Controller
 			'required'      => 'Kamu belum memilih %s',
 		]);
 		if ($this->form_validation->run() == false) {
-			$isi['user'] = $this->db->get_where('anggota', ['username' => $this->session->userdata('username')])->row_array();
-			$isi['content']		= 'anggota/form_anggota';
-			$isi['judul']		= 'Form Tambah User';
-			$isi['id_anggota'] 	= $this->m_anggota->id_anggota();
-			$this->load->view('v_dashboard', $isi);
+			if ($this->session->userdata('level') == '1') {
+				$isi['user'] = $this->db->get_where('anggota', ['username' => $this->session->userdata('username')])->row_array();
+				$isi['content']		= 'anggota/form_anggota';
+				$isi['judul']		= 'Form Tambah User';
+				$isi['id_anggota'] 	= $this->m_anggota->id_anggota();
+				$this->load->view('v_dashboard', $isi);
+			} else {
+				redirect('dashboard');
+			}
 		} else {
 			$data = array(
 				'id_anggota' 	=> $this->input->post('id_anggota'),
@@ -118,7 +122,7 @@ class Anggota extends CI_Controller
 			$isi['data']	 	= $this->m_anggota->edit($id);
 			$this->load->view('v_dashboard', $isi);
 		} else {
-			redirect('buku');
+			redirect('dashboard');
 		}
 	}
 
@@ -141,14 +145,12 @@ class Anggota extends CI_Controller
 				foreach ($idg as $row) {
 					$id = $row->id_anggota;
 				};
-				// var_dump($id);
-				// die;
 				$isi['content']		= 'anggota/edit_anggota';
 				$isi['judul']		= 'Form Edit User';
 				$isi['data']	 	= $this->m_anggota->edit($id);
 				$this->load->view('v_dashboard', $isi);
 			} else {
-				redirect('buku');
+				redirect('dashboard');
 			}
 		} else {
 			$id_anggota = $this->input->post('id_anggota');
@@ -172,10 +174,14 @@ class Anggota extends CI_Controller
 
 	public function hapus($id)
 	{
-		$query = $this->m_anggota->hapus($id);
-		if ($query = true) {
-			$this->session->set_flashdata('info', 'Data Berhasil di Hapus');
-			redirect('anggota');
+		if ($this->session->userdata('level') == '1') {
+			$query = $this->m_anggota->hapus($id);
+			if ($query = true) {
+				$this->session->set_flashdata('info', 'Data Berhasil di Hapus');
+				redirect('anggota');
+			}
+		} else {
+			redirect('dashboard');
 		}
 	}
 }

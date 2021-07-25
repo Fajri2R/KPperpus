@@ -34,46 +34,62 @@ class Penerbit extends CI_Controller
 			$isi['judul']	= 'Form Tambah Penerbit';
 			$this->load->view('v_dashboard', $isi);
 		} else {
-			redirect('buku');
+			redirect('dashboard');
 		}
 	}
 
 	public function simpan()
 	{
-		$data['nama_penerbit'] = ucwords($this->input->post('nama_penerbit'));
-		$query = $this->db->insert('penerbit', $data);
-		if ($query = true) {
-			$this->session->set_flashdata('info', 'Data Berhasil di Simpan');
-			redirect('penerbit');
+		if ($this->session->userdata('level') == '1') {
+			$data['nama_penerbit'] = ucwords($this->input->post('nama_penerbit'));
+			$query = $this->db->insert('penerbit', $data);
+			if ($query = true) {
+				$this->session->set_flashdata('info', 'Data Berhasil di Simpan');
+				redirect('penerbit');
+			}
+		} else {
+			redirect('dashboard');
 		}
 	}
 
 	public function edit($id)
 	{
-		$isi['user'] = $this->db->get_where('anggota', ['username' => $this->session->userdata('username')])->row_array();
-		$isi['content'] = 'penerbit/edit_penerbit';
-		$isi['judul']	= 'Form Edit Penerbit';
-		$isi['data']	= $this->m_penerbit->edit($id);
-		$this->load->view('v_dashboard', $isi);
+		if ($this->session->userdata('level') == '1') {
+			$isi['user'] = $this->db->get_where('anggota', ['username' => $this->session->userdata('username')])->row_array();
+			$isi['content'] = 'penerbit/edit_penerbit';
+			$isi['judul']	= 'Form Edit Penerbit';
+			$isi['data']	= $this->m_penerbit->edit($id);
+			$this->load->view('v_dashboard', $isi);
+		} else {
+			redirect('dashboard');
+		}
 	}
 
 	public function update()
 	{
-		$id_penerbit 			= $this->input->post('id_penerbit');
-		$data['nama_penerbit'] 	= ucwords($this->input->post('nama_penerbit'));
-		$query = $this->m_penerbit->update($id_penerbit, $data);
-		if ($query = true) {
-			$this->session->set_flashdata('info', 'Data Berhasil di Update');
-			redirect('penerbit');
+		if ($this->session->userdata('level') == '1') {
+			$id_penerbit 			= $this->input->post('id_penerbit');
+			$data['nama_penerbit'] 	= ucwords($this->input->post('nama_penerbit'));
+			$query = $this->m_penerbit->update($id_penerbit, $data);
+			if ($query = true) {
+				$this->session->set_flashdata('info', 'Data Berhasil di Update');
+				redirect('penerbit');
+			}
+		} else {
+			redirect('dashboard');
 		}
 	}
 
 	public function hapus($id)
 	{
-		$query = $this->m_penerbit->hapus($id);
-		if ($query = true) {
-			$this->session->set_flashdata('info', 'Data Berhasil di Hapus');
-			redirect('penerbit');
+		if ($this->session->userdata('level') == '1') {
+			$query = $this->m_penerbit->hapus($id);
+			if ($query = true) {
+				$this->session->set_flashdata('info', 'Data Berhasil di Hapus');
+				redirect('penerbit');
+			}
+		} else {
+			redirect('dashboard');
 		}
 	}
 }

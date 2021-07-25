@@ -19,9 +19,9 @@ class Login extends CI_Controller
 			'required'      => 'Kamu belum menginput %s',
 		]);
 		if ($this->form_validation->run() == false) {
-			$isi['title'] = 'Login';
+			$isi['title'] = 'Perpustakaan SMA Pelita Raya Jambi';
 			$this->load->view('templates/auth_header', $isi);
-			$this->load->view('auth/v_login');
+			$this->load->view('auth/v_login2');
 			$this->load->view('templates/auth_footer');
 		} else {
 			$username = $this->input->post('username');

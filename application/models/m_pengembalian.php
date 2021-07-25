@@ -1,8 +1,9 @@
-<?php 
+<?php
 
-class M_pengembalian Extends CI_Model{
+class M_pengembalian extends CI_Model
+{
 
-	public function getAllData()
+    public function getAllData()
     {
         $this->db->select('*');
         $this->db->from('pengembalian');
@@ -11,9 +12,15 @@ class M_pengembalian Extends CI_Model{
         return $this->db->get()->result();
     }
 
+    function rp($angka)
+    {
+        $hasil_rupiah = "Rp. " . number_format($angka, 0, ',', '.') . ',-';
+        return $hasil_rupiah;
+    }
+
     public function hapus($id)
     {
-    	$this->db->where('id_pengembalian', $id);
-    	$this->db->delete('pengembalian');
+        $this->db->where('id_pengembalian', $id);
+        $this->db->delete('pengembalian');
     }
 }

@@ -45,7 +45,7 @@
                     </div>
 
                     <div class="col-md-2">
-                        <a href="<?= base_url() ?>laporan/pdf_databuku" class="btn btn-danger btn-block btn-pdf" target="_blank"> <i class="fa fa-file-pdf-o"></i> View PDF</a>
+                        <a href="<?= base_url() ?>laporan/pdf_databuku" class="btn btn-danger btn-block btn-pdf" target="_blank"> <i class="fa fa-file-pdf-o"></i> Cetak Laporan</a>
                     </div>
                 </div>
 

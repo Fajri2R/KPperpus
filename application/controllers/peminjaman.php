@@ -27,7 +27,11 @@ class Peminjaman extends CI_Controller
 			$isi['data']	= $this->m_peminjaman->getDataPeminjaman();
 			$this->load->view('v_dashboard', $isi);
 		} else {
-			redirect('buku');
+			$isi['content'] = 'peminjaman/v_peminjaman1';
+			$isi['judul']	= 'Buku yang sedang dipinjam';
+			$isi['title']	= 'Data Peminjam';
+			$isi['data']	= $this->m_peminjaman->getDataPeminjaman();
+			$this->load->view('v_dashboard', $isi);
 		}
 	}
 
@@ -42,7 +46,7 @@ class Peminjaman extends CI_Controller
 			$isi['buku']		= $this->db->get('buku')->result();
 			$this->load->view('v_dashboard', $isi);
 		} else {
-			redirect('buku');
+			redirect('dashboard');
 		}
 	}
 
@@ -57,13 +61,17 @@ class Peminjaman extends CI_Controller
 		]);
 
 		if ($this->form_validation->run() == false) {
-			$isi['user'] = $this->db->get_where('anggota', ['username' => $this->session->userdata('username')])->row_array();
-			$isi['content'] 	= 'peminjaman/t_peminjaman';
-			$isi['judul']		= 'Form Tambah Peminjaman';
-			$isi['id_peminjaman'] = $this->m_peminjaman->id_peminjaman();
-			$isi['peminjam']	= $only;
-			$isi['buku']		= $this->db->get('buku')->result();
-			$this->load->view('v_dashboard', $isi);
+			if ($this->session->userdata('level') == '1') {
+				$isi['user'] = $this->db->get_where('anggota', ['username' => $this->session->userdata('username')])->row_array();
+				$isi['content'] 	= 'peminjaman/t_peminjaman';
+				$isi['judul']		= 'Form Tambah Peminjaman';
+				$isi['id_peminjaman'] = $this->m_peminjaman->id_peminjaman();
+				$isi['peminjam']	= $only;
+				$isi['buku']		= $this->db->get('buku')->result();
+				$this->load->view('v_dashboard', $isi);
+			} else {
+				redirect('dashboard');
+			}
 		} else {
 
 			$data = array(
@@ -90,31 +98,39 @@ class Peminjaman extends CI_Controller
 
 	public function hapus($id)
 	{
-		$query = $this->m_peminjaman->hapus($id);
-		if ($query = true) {
-			$this->session->set_flashdata('info', 'Data Berhasil di Hapus');
-			redirect('peminjaman');
+		if ($this->session->userdata('level') == '1') {
+			$query = $this->m_peminjaman->hapus($id);
+			if ($query = true) {
+				$this->session->set_flashdata('info', 'Data Berhasil di Hapus');
+				redirect('peminjaman');
+			}
+		} else {
+			redirect('dashboard');
 		}
 	}
 
 	public function kembalikan($id)
 	{
-		$data = $this->m_peminjaman->getDataById_pm($id);
-		$kembalikan = array(
-			'id_anggota' 		=> $data['id_anggota'],
-			'id_buku' 			=> $data['id_buku'],
-			'tgl_pinjam' 		=> $data['tgl_pinjam'],
-			'tgl_kembali' 		=> $data['tgl_kembali'],
-			'tgl_kembalikan' 	=> date('Y-m-d')
-		);
+		if ($this->session->userdata('level') == '1') {
+			$data = $this->m_peminjaman->getDataById_pm($id);
+			$kembalikan = array(
+				'id_anggota' 		=> $data['id_anggota'],
+				'id_buku' 			=> $data['id_buku'],
+				'tgl_pinjam' 		=> $data['tgl_pinjam'],
+				'tgl_kembali' 		=> $data['tgl_kembali'],
+				'tgl_kembalikan' 	=> date('Y-m-d')
+			);
 
-		$query = $this->db->insert('pengembalian', $kembalikan);
-		if ($query = true) {
-			$delete = $this->m_peminjaman->deletePm($id);
-			if ($delete = true) {
-				$this->session->set_flashdata('info', 'Buku Berhasil di Kembalikan');
-				redirect('peminjaman');
+			$query = $this->db->insert('pengembalian', $kembalikan);
+			if ($query = true) {
+				$delete = $this->m_peminjaman->deletePm($id);
+				if ($delete = true) {
+					$this->session->set_flashdata('info', 'Buku Berhasil di Kembalikan');
+					redirect('peminjaman');
+				}
 			}
+		} else {
+			redirect('dashboard');
 		}
 	}
 }

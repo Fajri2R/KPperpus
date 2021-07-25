@@ -38,6 +38,8 @@ if (!empty($this->session->flashdata('info'))) { ?>
 					$tgl_kembali = new DateTime($row->tgl_kembali);
 					$tgl_sekarang = new DateTime();
 					$selisih = $tgl_sekarang->diff($tgl_kembali)->format("%a");
+					// var_dump($selisih);
+					// die;
 				?>
 					<tr>
 						<td><?= $row->id_pm; ?></td>
