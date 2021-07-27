@@ -41,7 +41,7 @@ if (!empty($this->session->flashdata('info'))) { ?>
                             if ($tgl_kembali >= $tgl_sekarang or $selisih == 0) {
                                 echo "<span class='label label-warning'>Belum di Kembalikan</span>";
                             } else {
-                                echo "Telat <b style = 'color:red;'>" . $selisih . "</b> Hari ";
+                                echo "Telat <b style = 'color:red;'>" . $selisih . "</b> Hari <br> <span class='label label-danger'> Denda Perhari = 1.000";
                             }
                             ?>
                         </td>

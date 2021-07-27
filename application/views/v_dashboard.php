@@ -42,6 +42,51 @@
 				<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
 					<span class="sr-only">Toggle navigation</span>
 				</a>
+				<div class="navbar-custom-menu">
+					<ul class="nav navbar-nav">
+						<!-- Messages: style can be found in dropdown.less-->
+						<li class="dropdown user user-menu">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<img src="<?= base_url('assets/dist/img/') . $user['image'] ?>" class="user-image" alt="User Image">
+								<span class="hidden-xs"><?= $user['nama']; ?></span>
+							</a>
+							<ul class="dropdown-menu">
+								<!-- User image -->
+								<li class="user-header">
+									<img src="<?= base_url('assets/dist/img/') . $user['image'] ?>" class="img-circle" alt="User Image">
+									<p>
+										<?= $user['nama']; ?>
+										<small><?= $user['level'] == 1 ? "Admin" : "Siswa" ?></small>
+									</p>
+								</li>
+								<!-- Menu Body -->
+								<!-- <li class="user-body">
+									<div class="row">
+										<div class="col-xs-4 text-center">
+											<a href="#">Followers</a>
+										</div>
+										<div class="col-xs-4 text-center">
+											<a href="#">Sales</a>
+										</div>
+										<div class="col-xs-4 text-center">
+											<a href="#">Friends</a>
+										</div>
+									</div>
+									<!-- /.row 
+								</li> -->
+								<!-- Menu Footer-->
+								<li class="user-footer">
+									<div class="pull-left">
+										<a href="<?= base_url() ?>profile" class="btn btn-default btn-flat"><i class="fa fa-user"></i> Profile</a>
+									</div>
+									<div class="pull-right">
+										<a href="<?= base_url() ?>login/logout" class="btn btn-default btn-flat"><i class="fa fa-sign-out"></i> Log out</a>
+									</div>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
 			</nav>
 		</header>
 
@@ -85,7 +130,8 @@
 	<script src="<?= base_url() ?>assets/bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
 	<script src="<?= base_url() ?>assets/bower_components/moment/min/moment.min.js"></script>
 	<script src="<?= base_url() ?>assets/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-	<script src="<?= base_url() ?>assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+	<script src="<?= base_url() ?>assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js">
+	</script>
 	<script src="<?= base_url() ?>assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 	<script src="<?= base_url() ?>assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 	<script src="<?= base_url() ?>assets/bower_components/fastclick/lib/fastclick.js"></script>

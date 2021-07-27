@@ -13,6 +13,7 @@
                     <th>Tanggal Pinjam</th>
                     <th>Tanggal Kembali</th>
                     <th>Tanggal di Kembalikan</th>
+                    <th>Denda</th>
                 </tr>
             </thead>
 
@@ -28,6 +29,18 @@
                         <td><?= $row->tgl_pinjam; ?></td>
                         <td><?= $row->tgl_kembali; ?></td>
                         <td><?= $row->tgl_kembalikan; ?></td>
+                        <td>
+                            <?php
+                            $tgl_kembali = new DateTime($row->tgl_kembali);
+                            $tgl_kembalikan = new DateTime($row->tgl_kembalikan);
+                            $selisih = $tgl_kembalikan->diff($tgl_kembali)->format("%a");
+                            if ($tgl_kembali >= $tgl_kembalikan or $selisih == 0) {
+                                echo "Tidak ada denda";
+                            } else {
+                                echo $this->m_pengembalian->rp(1000 * $selisih);
+                            }
+                            ?>
+                        </td>
                     </tr>
                 <?php }
                 ?>

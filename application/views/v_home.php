@@ -72,7 +72,7 @@ if ($this->session->userdata('level') == '1') { ?>
       <!-- small box -->
       <div class="small-box bg-aqua">
         <div class="inner">
-          <h2>
+          <h2 style="white-space: normal;">
             Profil Saya
           </h2>
           <br>
@@ -90,7 +90,7 @@ if ($this->session->userdata('level') == '1') { ?>
       <!-- small box -->
       <div class="small-box bg-green">
         <div class="inner">
-          <h2>
+          <h2 style="white-space: normal;">
             Daftar Buku
           </h2>
           <br>

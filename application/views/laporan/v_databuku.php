@@ -26,7 +26,6 @@
     <div class="box">
         <div class="box-header">
             <form method="post" action="<?= base_url() ?>laporan/peminjaman">
-
                 <div class="row">
                     <div class="col-md-2">
                         <h4 class="text-primary"><b>Filter Laporan Data Buku</b></h4>

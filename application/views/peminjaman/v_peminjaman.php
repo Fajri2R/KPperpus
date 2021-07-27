@@ -76,7 +76,7 @@ if (!empty($this->session->flashdata('info'))) { ?>
 						$e3 = '%20%F0%9F%99%8F%2C';
 						$pesanreal = '&text=' . 'Halo selamat ' . $salam . $e1 . 'Ini dari perpustakaan, ingin mengingatkan bahwa waktu pinjam buku berjudul ' . $jdlbuku . ' telah habis' . $e2 . ' Mohon segera dikembalikan' . $e3 . ' terima kasih';
 						$penutup = '%0A%0ASalam hangat dari Petugas Perpustakaan%20%F0%9F%98%89';
-						if ($this->agent->is_mobile()) $linkWA = 'https://api.whatsapp.com/send?phone=' . $nomor . $pesan . $penutup;
+						if ($this->agent->is_mobile()) $linkWA = 'https://api.whatsapp.com/send?phone=' . $nomor . $pesanreal . $penutup;
 						// tapi kalau desktop pakai web.whatsapp.com
 						else $linkWA = 'https://web.whatsapp.com/send?phone=' . $nomor . $pesanreal . $penutup;
 						?>

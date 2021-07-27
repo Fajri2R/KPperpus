@@ -28,9 +28,9 @@ class Peminjaman extends CI_Controller
 			$this->load->view('v_dashboard', $isi);
 		} else {
 			$isi['content'] = 'peminjaman/v_peminjaman1';
-			$isi['judul']	= 'Buku yang sedang dipinjam';
+			$isi['judul']	= 'Riwayat Peminjaman';
 			$isi['title']	= 'Data Peminjam';
-			$isi['data']	= $this->m_peminjaman->getDataPeminjaman();
+			$isi['data']	= $this->m_peminjaman->getDataPeminjaman1();
 			$this->load->view('v_dashboard', $isi);
 		}
 	}

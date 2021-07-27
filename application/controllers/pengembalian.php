@@ -24,10 +24,10 @@ class Pengembalian extends CI_Controller
 			$this->load->view('v_dashboard', $isi);
 		} else {
 			$isi['content'] = 'pengembalian/v_pengembalian1';
-			$isi['judul']	= 'Buku yang sudah dikembalikan';
+			$isi['judul']	= 'Riwayat Pengembalian';
 			$isi['title']	= 'Data Pengembalian';
 			$this->load->model('m_pengembalian');
-			$isi['data']	= $this->m_pengembalian->getAllData();
+			$isi['data']	= $this->m_pengembalian->getAllData1();
 			$this->load->view('v_dashboard', $isi);
 		}
 	}

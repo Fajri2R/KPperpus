@@ -127,15 +127,15 @@ if ($this->session->userdata('level') == '1') { ?>
         </li>
         <li class="treeview <?= $this->uri->segment(1) == 'peminjaman' || $this->uri->segment(1) == 'pengembalian' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
           <a href="#">
-            <i class="fa fa-area-chart"></i>
-            <span style="white-space: normal;">Transaksi Semua User</span>
+            <i class="fa fa-history"></i>
+            <span style="white-space: normal;">Riwayat</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li <?= $this->uri->segment(1) == 'peminjaman' || $this->uri->segment(1) == '' ? 'class="active"' : '' ?>><a style="white-space: normal;" href="<?= base_url() ?>peminjaman"><i class="fa fa-circle-o"></i> Buku yang sedang dipinjam</a></li>
-            <li <?= $this->uri->segment(1) == 'pengembalian' || $this->uri->segment(1) == '' ? 'class="active"' : '' ?>><a style="white-space: normal;" href="<?= base_url() ?>pengembalian"><i class="fa fa-circle-o"></i> Buku yang sudah dikembalikan</a></li>
+            <li <?= $this->uri->segment(1) == 'peminjaman' || $this->uri->segment(1) == '' ? 'class="active"' : '' ?>><a style="white-space: normal;" href="<?= base_url() ?>peminjaman"><i class="fa fa-circle-o"></i> Peminjaman</a></li>
+            <li <?= $this->uri->segment(1) == 'pengembalian' || $this->uri->segment(1) == '' ? 'class="active"' : '' ?>><a style="white-space: normal;" href="<?= base_url() ?>pengembalian"><i class="fa fa-circle-o"></i> Pengembalian</a></li>
           </ul>
         </li>
 
