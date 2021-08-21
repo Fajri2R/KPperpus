@@ -22,6 +22,7 @@ if (!empty($this->session->flashdata('info'))) { ?>
 			<thead>
 				<tr>
 					<th>Id Peminjaman</th>
+					<th>Id Anggota</th>
 					<th>Peminjam</th>
 					<th>Buku</th>
 					<th>Tanggal Pinjam</th>
@@ -43,6 +44,7 @@ if (!empty($this->session->flashdata('info'))) { ?>
 				?>
 					<tr>
 						<td><?= $row->id_pm; ?></td>
+						<td><?= $row->id_anggota; ?></td>
 						<td><?= $row->nama; ?></td>
 						<td><?= $row->judul_buku; ?></td>
 						<td><?= $row->tgl_pinjam; ?></td>

@@ -33,11 +33,11 @@
 					</div>
 
 					<div class="col-md-2">
-						<input type="text" name="tgl_awal" class="form-control" placeholder="Tanggal Awal" onfocus="(this.type='date')">
+						<input type="text" name="tgl_awal" class="form-control" placeholder="Tanggal Pinjam" onfocus="(this.type='date')">
 					</div>
 
 					<div class="col-md-2">
-						<input type="text" name="tgl_ahir" class="form-control tgl_ahir" placeholder="Tanggal Ahir" onfocus="(this.type='date')">
+						<input type="text" name="tgl_ahir" class="form-control tgl_ahir" placeholder="Tanggal Kembali" onfocus="(this.type='date')">
 					</div>
 
 					<div class="col-md-2">
@@ -61,6 +61,7 @@
 				<thead>
 					<tr>
 						<th>Id Peminjaman</th>
+						<th>Id Anggota</th>
 						<th>Peminjam</th>
 						<th>Buku</th>
 						<th>Tanggal Pinjam</th>
@@ -73,6 +74,7 @@
 					foreach ($data as $row) { ?>
 						<tr>
 							<td><?= $row->id_pm; ?></td>
+							<td><?= $row->id_anggota; ?></td>
 							<td><?= $row->nama; ?></td>
 							<td><?= $row->judul_buku; ?></td>
 							<td><?= mediumdate_indo($row->tgl_pinjam); ?></td>

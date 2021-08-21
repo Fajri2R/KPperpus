@@ -30,18 +30,18 @@
 // Extend the TCPDF class to create custom Header and Footer
 class MYPDF extends TCPDF
 {
-	//Page header
-	public function Header()
-	{
-		// Logo
-		$image_file = K_PATH_IMAGES . 'logo.jpg';
-		$this->Image($image_file, 15, 10, 30, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
-		// Set font
-		$this->SetFont('helvetica', '', 20);
-		// Title
-		// $this->Cell(0, 50, 'SMA PELITA RAYA KOTA JAMBI', 0, false, 'C', 0, '', 0, false, 'M', 'M');
-		$this->SetY(15);
-		$isi_header = "<table align=\"center\" style=\"padding-left:80px;\">
+    //Page header
+    public function Header()
+    {
+        // Logo
+        $image_file = K_PATH_IMAGES . 'logo.jpg';
+        $this->Image($image_file, 15, 10, 30, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+        // Set font
+        $this->SetFont('helvetica', '', 20);
+        // Title
+        // $this->Cell(0, 50, 'SMA PELITA RAYA KOTA JAMBI', 0, false, 'C', 0, '', 0, false, 'M', 'M');
+        $this->SetY(15);
+        $isi_header = "<table align=\"center\" style=\"padding-left:80px;\">
 					<tr>
 						<td style=\"font-size:24px;\">SMA PELITA RAYA KOTA JAMBI</td>	
 					</tr>
@@ -53,19 +53,19 @@ class MYPDF extends TCPDF
 					</tr>
 					<hr>
 				</table>";
-		$this->writeHTML($isi_header, true, false, false, false, '');
-	}
+        $this->writeHTML($isi_header, true, false, false, false, '');
+    }
 
-	// Page footer
-	public function Footer()
-	{
-		// Position at 15 mm from bottom
-		$this->SetY(-15);
-		// Set font
-		$this->SetFont('helvetica', 'I', 8);
-		// Page number
-		$this->Cell(0, 10, 'Page ' . $this->getAliasNumPage() . '/' . $this->getAliasNbPages(), 0, false, 'C', 0, '', 0, false, 'T', 'M');
-	}
+    // Page footer
+    public function Footer()
+    {
+        // Position at 15 mm from bottom
+        $this->SetY(-15);
+        // Set font
+        $this->SetFont('helvetica', 'I', 8);
+        // Page number
+        $this->Cell(0, 10, 'Page ' . $this->getAliasNumPage() . '/' . $this->getAliasNbPages(), 0, false, 'C', 0, '', 0, false, 'T', 'M');
+    }
 }
 
 // create new PDF document
@@ -74,7 +74,7 @@ $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8',
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
 $pdf->SetAuthor('Perpustakaan');
-$pdf->SetTitle('Laporan Data Buku');
+$pdf->SetTitle('Laporan Data Anggota');
 $pdf->SetSubject('TCPDF Tutorial');
 $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
 
@@ -105,8 +105,8 @@ $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 
 // set some language-dependent strings (optional)
 if (@file_exists(dirname(__FILE__) . '/lang/eng.php')) {
-	require_once(dirname(__FILE__) . '/lang/eng.php');
-	$pdf->setLanguageArray($l);
+    require_once(dirname(__FILE__) . '/lang/eng.php');
+    $pdf->setLanguageArray($l);
 }
 
 // ---------------------------------------------------------
@@ -120,40 +120,35 @@ $tgl_pinjam = date('Y-m-d');
 
 $table1 = '<br><br><br><br><br><br><table border="0" width="650px">';
 $table1 .= '<tr> 
-				<td style="text-align:center; font-family:sans-serif; font-size:16px; font-weight:bold;">LAPORAN DATA BUKU</td>
+				<td style="text-align:center; font-family:sans-serif; font-size:16px; font-weight:bold;">LAPORAN DATA ANGGOTA</td>	
 				</tr>';
 $table1 .= '<tr> 
-<td style="text-align:center; font-family:sans-serif; font-size:16px; font-weight:bold;">PERPUSTAKAAN SMA PELITA RAYA KOTA JAMBI</td>
+					<td style="text-align:center; font-family:sans-serif; font-size:16px; font-weight:bold;">PERPUSTAKAAN SMA PELITA RAYA KOTA JAMBI</td>
 					</tr>';
 
 $table1 .= '</table> <br/><br/>';
 
 $table2 = '<table border="1" width="650px" style="white-space: normal;table-layout: fixed;">';
 $table2 .= '<tr style="background-color:lightblue;"> 
-				<td height="30" style="text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">ID Buku</td>
-				<td style="text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Tanggal Terima</td>
-				<td style="text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Nomor Induk</td>
-				<td style="text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Judul Buku</td>
-				<td style="text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Pengarang</td>
-				<td style="text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Penerbit</td>
-				<td style="text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Tahun Terbit</td>
-				<td style="text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Sumber</td>
+				<td height="30" style="text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Id Anggota</td>
+				<td height="30" style="text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Username</td>
+				<td style="text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Nama Anggota</td>
+				<td style="text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Jenis Kelamin</td>
+				<td style="text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Alamat</td>
+				<td style="text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">No. Telpon</td>
 			</tr>';
 
 foreach ($data as $row) {
-	$table2 .= '<tr> 
-					<td style="text-align:center; font-family:sans-serif; font-size:12px;">' . $row->id_buku . '</td>
-					<td style="text-align:center; font-family:sans-serif; font-size:12px;">' . slashdate_indo($row->tgl_terima) . '</td>
-					<td style="text-align:center; font-family:sans-serif; font-size:12px;">' . $row->nomor_induk . '</td>
-					<td style="text-align:center; font-family:sans-serif; font-size:12px; text-transform: capitalize;">' . $row->judul_buku . '</td>
-					<td style="text-align:center; font-family:sans-serif; font-size:12px; text-transform: capitalize;">' . $row->nama_pengarang . '</td>
-					<td style="text-align:center; font-family:sans-serif; font-size:12px; text-transform: capitalize;">' . $row->nama_penerbit . '</td>
-					<td style="text-align:center; font-family:sans-serif; font-size:12px;">' . $row->tahun_terbit . '</td>
-					<td style="text-align:center; font-family:sans-serif; font-size:12px;">' . $row->sumber . '</td>
+    $table2 .= '<tr> 
+					<td style="text-align:center; font-family:sans-serif; font-size:12px;">' . $row->id_anggota . '</td>
+					<td style="text-align:center; font-family:sans-serif; font-size:12px;">' . $row->username . '</td>
+					<td style="text-align:center; font-family:sans-serif; font-size:12px; text-transform: capitalize;">' . $row->nama . '</td>
+					<td style="text-align:center; font-family:sans-serif; font-size:12px; text-transform: capitalize;">' . $row->jenkel . '</td>
+					<td style="text-align:center; font-family:sans-serif; font-size:12px; text-transform: capitalize;">' . $row->alamat . '</td>
+					<td style="text-align:center; font-family:sans-serif; font-size:12px;">' . hp($row->no_hp) . '</td>
 				</tr>';
 }
 $table2 .= '</table>';
-
 $ttd = '<br><br><span>Jambi, ' . mediumdate_indo($tgl_pinjam) . '</span><br><span>Petugas Perpustakaan</span><br><br><br><br><span>' . $user['nama'] . '</span>';
 
 
@@ -166,7 +161,7 @@ $pdf->writeHTMLCell(0, 0, '', '', $ttd, 0, 1, 0, true, 'R', true);
 // ---------------------------------------------------------
 
 //Close and output PDF document
-$pdf->Output('laporan_databuku.pdf', 'I');
+$pdf->Output('laporan_dataanggota.pdf', 'I');
 
 //============================================================+
 // END OF FILE

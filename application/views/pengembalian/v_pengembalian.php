@@ -8,6 +8,7 @@
 			<thead>
 				<tr>
 					<th>No.</th>
+					<th>Id Anggota</th>
 					<th>Nama Peminjam</th>
 					<th>Judul Buku</th>
 					<th>Tanggal Pinjam</th>
@@ -25,6 +26,7 @@
 				foreach ($data as $row) { ?>
 					<tr>
 						<td><?= $no++; ?></td>
+						<td><?= $row->id_anggota; ?></td>
 						<td><?= $row->nama; ?></td>
 						<td><?= $row->judul_buku; ?></td>
 						<td><?= $row->tgl_pinjam; ?></td>

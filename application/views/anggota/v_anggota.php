@@ -41,7 +41,7 @@ if (!empty($this->session->flashdata('info'))) { ?>
 						<td><?= $row->username; ?></td>
 						<td style="text-transform: capitalize;"><?= $row->nama; ?></td>
 						<td><?= $row->jenkel; ?></td>
-						<td><?= $row->alamat; ?></td>
+						<td style="text-transform: capitalize;"><?= $row->alamat; ?></td>
 						<td><?= hp($row->no_hp); ?></td>
 						<td><?= $row->level == 1 ? "Admin" : "Siswa" ?></td>
 						<td>

@@ -63,19 +63,18 @@
  * Default images directory.
  * By default it is automatically set but you can also set it as a fixed string to improve performances.
  */
-define ('K_PATH_IMAGES', dirname(__FILE__).'/../gambar/');
+define('K_PATH_IMAGES', dirname(__FILE__) . '/../gambar/');
 
 /**
  * Deafult image logo used be the default Header() method.
  * Please set here your own logo or an empty string to disable it.
  */
-define ('PDF_HEADER_LOGO', '');
-//define ('PDF_HEADER_LOGO', '');
+define('PDF_HEADER_LOGO', 'logo.jpg');
 
 /**
  * Header logo image width in user units.
  */
-define ('PDF_HEADER_LOGO_WIDTH', 170);
+define('PDF_HEADER_LOGO_WIDTH', 16);
 
 /**
  * Cache directory for temporary files (full path).
@@ -85,102 +84,104 @@ define ('PDF_HEADER_LOGO_WIDTH', 170);
 /**
  * Generic name for a blank image.
  */
-define ('K_BLANK_IMAGE', '_blank.png');
+define('K_BLANK_IMAGE', '_blank.png');
 
 /**
  * Page format.
  */
-define ('PDF_PAGE_FORMAT', 'A4');
+define('PDF_PAGE_FORMAT', 'A4');
 
 /**
  * Page orientation (P=portrait, L=landscape).
  */
-define ('PDF_PAGE_ORIENTATION', 'P');
+define('PDF_PAGE_ORIENTATION', 'P');
 
 /**
  * Document creator.
  */
-define ('PDF_CREATOR', 'TCPDF');
+define('PDF_CREATOR', 'TCPDF');
 
 /**
  * Document author.
  */
-define ('PDF_AUTHOR', 'TCPDF');
+define('PDF_AUTHOR', 'TCPDF');
 
 /**
  * Header title.
  */
-define ('PDF_HEADER_TITLE', '');
+define('PDF_HEADER_TITLE', 'SMA PELITA RAYA KOTA JAMBI');
 
 /**
  * Header description string.
  */
-define ('PDF_HEADER_STRING', "");
+define('PDF_HEADER_STRING', "Jln. Sersan Udara Syawal Rt.03 No.104 Talang Bakung
+Email : PelitaRaya@gmail.com Telp : 0741-57372301
+");
 
 /**
  * Document unit of measure [pt=point, mm=millimeter, cm=centimeter, in=inch].
  */
-define ('PDF_UNIT', 'mm');
+define('PDF_UNIT', 'mm');
 
 /**
  * Header margin.
  */
-define ('PDF_MARGIN_HEADER', 10);
+define('PDF_MARGIN_HEADER', 5);
 
 /**
  * Footer margin.
  */
-define ('PDF_MARGIN_FOOTER', 15);
+define('PDF_MARGIN_FOOTER', 15);
 
 /**
  * Top margin.
  */
-define ('PDF_MARGIN_TOP', 15);
+define('PDF_MARGIN_TOP', 25);
 
 /**
  * Bottom margin.
  */
-define ('PDF_MARGIN_BOTTOM', 5);
+define('PDF_MARGIN_BOTTOM', 5);
 
 /**
  * Left margin.
  */
-define ('PDF_MARGIN_LEFT', 15);
+define('PDF_MARGIN_LEFT', 15);
 
 /**
  * Right margin.
  */
-define ('PDF_MARGIN_RIGHT', 10);
+define('PDF_MARGIN_RIGHT', 10);
 
 /**
  * Default main font name.
  */
-define ('PDF_FONT_NAME_MAIN', 'helvetica');
+define('PDF_FONT_NAME_MAIN', 'helvetica');
 
 /**
  * Default main font size.
  */
-define ('PDF_FONT_SIZE_MAIN', 12);
+define('PDF_FONT_SIZE_MAIN', 12);
 
 /**
  * Default data font name.
  */
-define ('PDF_FONT_NAME_DATA', 'helvetica');
+define('PDF_FONT_NAME_DATA', 'helvetica');
 
 /**
  * Default data font size.
  */
-define ('PDF_FONT_SIZE_DATA', 12);
+define('PDF_FONT_SIZE_DATA', 12);
 
 /**
  * Default monospaced font name.
  */
-define ('PDF_FONT_MONOSPACED', 'arial');
+define('PDF_FONT_MONOSPACED', 'arial');
 
 /**
  * Ratio used to adjust the conversion of pixels to user units.
  */
-define ('PDF_IMAGE_SCALE_RATIO', 1.25);
+define('PDF_IMAGE_SCALE_RATIO', 1.25);
 
 /**
  * Magnification factor for titles.
@@ -200,7 +201,7 @@ define('K_TITLE_MAGNIFICATION', 1.3);
 /**
  * Reduction factor for small font.
  */
-define('K_SMALL_RATIO', 2/3);
+define('K_SMALL_RATIO', 2 / 3);
 
 /**
  * Set to true to enable the special procedure used to avoid the overlappind of symbols on Thai language.

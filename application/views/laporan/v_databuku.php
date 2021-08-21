@@ -25,14 +25,18 @@
 <body>
     <div class="box">
         <div class="box-header">
-            <form method="post" action="<?= base_url() ?>laporan/peminjaman">
+            <form method="post" action="<?= base_url() ?>laporan/databuku">
                 <div class="row">
                     <div class="col-md-2">
                         <h4 class="text-primary"><b>Filter Laporan Data Buku</b></h4>
                     </div>
 
-                    <div class="col-md-3" style="margin-right:30px;">
+                    <div class="col-md-2">
                         <input type="text" name="tgl_terima" class="form-control" placeholder="Tanggal Terima" onfocus="(this.type='date')">
+                    </div>
+
+                    <div class="col-md-2" style="visibility: hidden;">
+                        <input type="text" name="tgl_ahir" class="form-control tgl_ahir" placeholder="Tanggal Kembali" onfocus="(this.type='date')">
                     </div>
 
                     <div class="col-md-2">
