@@ -43,7 +43,7 @@ class MYPDF extends TCPDF
         $this->SetY(15);
         $isi_header = "<table align=\"center\" style=\"padding-left:80px;\">
 					<tr>
-						<td style=\"font-size:24px;\">SMA PELITA RAYA KOTA JAMBI</td>	
+						<td style=\"font-size:26px;\"><b>SMA PELITA RAYA KOTA JAMBI</b></td>	
 					</tr>
 					<tr>
 						<td style=\"font-size:18px;\">Jln. Sersan Udara Syawal Rt.03 No.104 Talang Bakung</td>	
@@ -117,6 +117,7 @@ $pdf->SetFont('times');
 // add a page
 $pdf->AddPage();
 $tgl_pinjam = date('Y-m-d');
+$notbl = 1;
 
 $table1 = '<br><br><br><br><br><br><table border="0" width="650px">';
 $table1 .= '<tr> 
@@ -128,15 +129,16 @@ $table1 .= '<tr>
 
 $table1 .= '</table> <br/><br/>';
 
-$table2 = '<table border="1" width="650px" style="white-space: normal;table-layout: fixed;">';
+$table2 = '<table border="1" width="650px" style="margin-left: auto; margin-right: auto; white-space: normal;table-layout: fixed; width:100%;">';
 $table2 .= '<tr style="background-color:lightblue;"> 
-				<td style="text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Id Anggota</td>
-				<td style="text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Nama Peminjam</td>
-				<td style="text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Judul Buku</td>
-				<td style="text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Tanggal Pinjam</td>
-				<td style="text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Tanggal Kembali</td>
-				<td style="text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Tanggal di Kembalikan</td>
-				<td style="text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Denda</td>
+				<td style="width:5%; text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;"><div style="font-size:5pt">&nbsp;</div>No.</td>
+				<td style="width:11%; text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Id Anggota</td>
+				<td style="width:18%; text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;"><div style="font-size:5pt">&nbsp;</div>Nama Peminjam</td>
+				<td style="width:18%; text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;"><div style="font-size:5pt">&nbsp;</div>Judul Buku</td>
+				<td style="width:12%; text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Tanggal Pinjam</td>
+				<td style="width:12%; text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Tanggal Kembali</td>
+				<td style="width:14%; text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Tanggal di Kembalikan</td>
+				<td style="width:10%; text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;"><div style="font-size:5pt">&nbsp;</div>Denda</td>
 			</tr>';
 
 foreach ($data as $row) {
@@ -145,6 +147,7 @@ foreach ($data as $row) {
     $selisih = $tgl_kembalikan->diff($tgl_kembali)->format("%a");
     $test = ($tgl_kembali >= $tgl_kembalikan or $selisih == 0) ? "Tidak ada denda" : $this->m_pengembalian->rp(1000 * $selisih);
     $table2 .= '<tr> 
+					<td style="text-align:center; font-family:sans-serif; font-size:12px;">' . $notbl++ . '</td>
 					<td style="text-align:center; font-family:sans-serif; font-size:12px;">' . $row->id_anggota . '</td>
 					<td style="text-align:center; font-family:sans-serif; font-size:12px; text-transform: capitalize;">' . $row->nama . '</td>
 					<td style="text-align:center; font-family:sans-serif; font-size:12px; text-transform: capitalize;">' . $row->judul_buku . '</td>
@@ -167,7 +170,7 @@ $pdf->writeHTMLCell(0, 0, '', '', $ttd, 0, 1, 0, true, 'R', true);
 // ---------------------------------------------------------
 
 //Close and output PDF document
-$pdf->Output('laporan_pengembalian.pdf', 'I');
+$pdf->Output('laporan_pengembalian_' . shortdate_indo($tgl_pinjam) . '.pdf', 'I');
 
 //============================================================+
 // END OF FILE

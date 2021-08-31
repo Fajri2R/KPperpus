@@ -3,6 +3,7 @@
 		<a href="<?= base_url() ?>anggota" class="btn btn-success"><i class="fa fa-arrow-left"></i> Kembali</a>
 	</div>
 </div>
+<br>
 <div class="box">
 	<div class="box-header">
 

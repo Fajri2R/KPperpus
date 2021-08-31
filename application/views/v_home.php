@@ -8,7 +8,7 @@ if ($this->session->userdata('level') == '1') { ?>
         <div class="inner">
           <h3><?= $anggota; ?></h3>
 
-          <p>User</p>
+          <p>Anggota</p>
         </div>
         <div class="icon">
           <i class="fa fa-users"></i>

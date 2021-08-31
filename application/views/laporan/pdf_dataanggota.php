@@ -30,20 +30,20 @@
 // Extend the TCPDF class to create custom Header and Footer
 class MYPDF extends TCPDF
 {
-    //Page header
-    public function Header()
-    {
-        // Logo
-        $image_file = K_PATH_IMAGES . 'logo.jpg';
-        $this->Image($image_file, 15, 10, 30, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
-        // Set font
-        $this->SetFont('helvetica', '', 20);
-        // Title
-        // $this->Cell(0, 50, 'SMA PELITA RAYA KOTA JAMBI', 0, false, 'C', 0, '', 0, false, 'M', 'M');
-        $this->SetY(15);
-        $isi_header = "<table align=\"center\" style=\"padding-left:80px;\">
+	//Page header
+	public function Header()
+	{
+		// Logo
+		$image_file = K_PATH_IMAGES . 'logo.jpg';
+		$this->Image($image_file, 15, 10, 30, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+		// Set font
+		$this->SetFont('helvetica', '', 20);
+		// Title
+		// $this->Cell(0, 50, 'SMA PELITA RAYA KOTA JAMBI', 0, false, 'C', 0, '', 0, false, 'M', 'M');
+		$this->SetY(15);
+		$isi_header = "<table align=\"center\" style=\"padding-left:80px;\">
 					<tr>
-						<td style=\"font-size:24px;\">SMA PELITA RAYA KOTA JAMBI</td>	
+						<td style=\"font-size:26px;\"><b>SMA PELITA RAYA KOTA JAMBI</b></td>	
 					</tr>
 					<tr>
 						<td style=\"font-size:18px;\">Jln. Sersan Udara Syawal Rt.03 No.104 Talang Bakung</td>	
@@ -53,19 +53,19 @@ class MYPDF extends TCPDF
 					</tr>
 					<hr>
 				</table>";
-        $this->writeHTML($isi_header, true, false, false, false, '');
-    }
+		$this->writeHTML($isi_header, true, false, false, false, '');
+	}
 
-    // Page footer
-    public function Footer()
-    {
-        // Position at 15 mm from bottom
-        $this->SetY(-15);
-        // Set font
-        $this->SetFont('helvetica', 'I', 8);
-        // Page number
-        $this->Cell(0, 10, 'Page ' . $this->getAliasNumPage() . '/' . $this->getAliasNbPages(), 0, false, 'C', 0, '', 0, false, 'T', 'M');
-    }
+	// Page footer
+	public function Footer()
+	{
+		// Position at 15 mm from bottom
+		$this->SetY(-15);
+		// Set font
+		$this->SetFont('helvetica', 'I', 8);
+		// Page number
+		$this->Cell(0, 10, 'Page ' . $this->getAliasNumPage() . '/' . $this->getAliasNbPages(), 0, false, 'C', 0, '', 0, false, 'T', 'M');
+	}
 }
 
 // create new PDF document
@@ -87,7 +87,7 @@ $pdf->setFooterFont(array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
 
 // remove default header/footer
 $pdf->setPrintHeader(true);
-$pdf->setPrintFooter(false);
+$pdf->setPrintFooter(true);
 
 // set default monospaced font
 $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
@@ -105,8 +105,8 @@ $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 
 // set some language-dependent strings (optional)
 if (@file_exists(dirname(__FILE__) . '/lang/eng.php')) {
-    require_once(dirname(__FILE__) . '/lang/eng.php');
-    $pdf->setLanguageArray($l);
+	require_once(dirname(__FILE__) . '/lang/eng.php');
+	$pdf->setLanguageArray($l);
 }
 
 // ---------------------------------------------------------
@@ -117,6 +117,7 @@ $pdf->SetFont('times');
 // add a page
 $pdf->AddPage();
 $tgl_pinjam = date('Y-m-d');
+$notbl = 1;
 
 $table1 = '<br><br><br><br><br><br><table border="0" width="650px">';
 $table1 .= '<tr> 
@@ -128,20 +129,20 @@ $table1 .= '<tr>
 
 $table1 .= '</table> <br/><br/>';
 
-$table2 = '<table border="1" width="650px" style="white-space: normal;table-layout: fixed;">';
+$table2 = '<table border="1" width="650px" style="margin-left: auto; margin-right: auto; white-space: normal;table-layout: fixed; width:100%;">';
 $table2 .= '<tr style="background-color:lightblue;"> 
-				<td height="30" style="text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Id Anggota</td>
-				<td height="30" style="text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Username</td>
-				<td style="text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Nama Anggota</td>
-				<td style="text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Jenis Kelamin</td>
-				<td style="text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Alamat</td>
-				<td style="text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">No. Telpon</td>
+				<td style="width:5%; text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;"><div style="font-size:5pt">&nbsp;</div>No.</td>
+				<td style="width:12%; text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Id Anggota</td>
+				<td style="width:30%; text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;"><div style="font-size:5pt">&nbsp;</div>Nama Anggota</td>
+				<td style="width:15%; text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Jenis Kelamin</td>
+				<td style="width:18%; text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;"><div style="font-size:5pt">&nbsp;</div>Alamat</td>
+				<td style="width:20%; text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;"><div style="font-size:5pt">&nbsp;</div>No. Telpon</td>
 			</tr>';
 
 foreach ($data as $row) {
-    $table2 .= '<tr> 
+	$table2 .= '<tr> 
+					<td style="text-align:center; font-family:sans-serif; font-size:12px;">' . $notbl++ . '</td>
 					<td style="text-align:center; font-family:sans-serif; font-size:12px;">' . $row->id_anggota . '</td>
-					<td style="text-align:center; font-family:sans-serif; font-size:12px;">' . $row->username . '</td>
 					<td style="text-align:center; font-family:sans-serif; font-size:12px; text-transform: capitalize;">' . $row->nama . '</td>
 					<td style="text-align:center; font-family:sans-serif; font-size:12px; text-transform: capitalize;">' . $row->jenkel . '</td>
 					<td style="text-align:center; font-family:sans-serif; font-size:12px; text-transform: capitalize;">' . $row->alamat . '</td>
@@ -161,7 +162,7 @@ $pdf->writeHTMLCell(0, 0, '', '', $ttd, 0, 1, 0, true, 'R', true);
 // ---------------------------------------------------------
 
 //Close and output PDF document
-$pdf->Output('laporan_dataanggota.pdf', 'I');
+$pdf->Output('laporan_dataanggota_' . shortdate_indo($tgl_pinjam) . '.pdf', 'I');
 
 //============================================================+
 // END OF FILE

@@ -71,10 +71,10 @@ if ($this->session->userdata('level') == '1') { ?>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li <?= $this->uri->segment(2) == 'peminjaman' || $this->uri->segment(1) == '' ? 'class="active"' : '' ?>><a href="<?= base_url() ?>laporan/peminjaman"><i class="fa fa-circle-o"></i> Laporan Peminjaman</a></li>
-            <li <?= $this->uri->segment(2) == 'pengembalian' || $this->uri->segment(1) == '' ? 'class="active"' : '' ?>><a href="<?= base_url() ?>laporan/pengembalian"><i class="fa fa-circle-o"></i> Laporan Pengembalian</a></li>
             <li <?= $this->uri->segment(2) == 'dataanggota' || $this->uri->segment(1) == '' ? 'class="active"' : '' ?>><a href="<?= base_url() ?>laporan/dataanggota"><i class="fa fa-circle-o"></i> Laporan Data Anggota</a></li>
             <li <?= $this->uri->segment(2) == 'databuku' || $this->uri->segment(1) == '' ? 'class="active"' : '' ?>><a href="<?= base_url() ?>laporan/databuku"><i class="fa fa-circle-o"></i> Laporan Data Buku</a></li>
+            <li <?= $this->uri->segment(2) == 'peminjaman' || $this->uri->segment(1) == '' ? 'class="active"' : '' ?>><a href="<?= base_url() ?>laporan/peminjaman"><i class="fa fa-circle-o"></i> Laporan Peminjaman</a></li>
+            <li <?= $this->uri->segment(2) == 'pengembalian' || $this->uri->segment(1) == '' ? 'class="active"' : '' ?>><a href="<?= base_url() ?>laporan/pengembalian"><i class="fa fa-circle-o"></i> Laporan Pengembalian</a></li>
           </ul>
         </li>
 

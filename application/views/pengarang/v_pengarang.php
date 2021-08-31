@@ -21,6 +21,7 @@ if (!empty($this->session->flashdata('info'))) { ?>
 		<table id="example1" class="table table-bordered table-striped">
 			<thead>
 				<tr>
+					<th>No.</th>
 					<th>Id Pengarang</th>
 					<th>Nama Pengarang</th>
 					<th>Aksi</th>
@@ -29,8 +30,10 @@ if (!empty($this->session->flashdata('info'))) { ?>
 
 			<tbody>
 				<?php
+				$no = 1;
 				foreach ($data as $row) { ?>
 					<tr>
+						<td><?= $no++; ?></td>
 						<td><?= $row->id_pengarang; ?></td>
 						<td><?= $row->nama_pengarang; ?></td>
 						<td>
