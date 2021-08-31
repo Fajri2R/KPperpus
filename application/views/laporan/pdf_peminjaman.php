@@ -134,10 +134,10 @@ $table2 .= '<tr style="background-color:lightblue;">
 				<td style="width: 5%; text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;"><div style="font-size:5pt">&nbsp;</div>No.</td>
 				<td style="width: 8%; text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;"><div style="font-size:5pt">&nbsp;</div>Id PM</td>
 				<td style="width: 11%; text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Id Anggota</td>
-				<td style="width: 23%; text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;"><div style="font-size:5pt">&nbsp;</div>Nama Peminjam</td>
-				<td style="width: 21%; text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;"><div style="font-size:5pt">&nbsp;</div>Judul Buku</td>
-				<td style="width: 16%; text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Tanggal Pinjam</td>
-				<td style="width: 16%; text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Tanggal Kembali</td>
+				<td style="width: 24%; text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;"><div style="font-size:5pt">&nbsp;</div>Nama Peminjam</td>
+				<td style="width: 24%; text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;"><div style="font-size:5pt">&nbsp;</div>Judul Buku</td>
+				<td style="width: 14%; text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Tanggal Pinjam</td>
+				<td style="width: 14%; text-align:center; font-weight:bold; font-family:sans-serif; font-size:14px;">Tanggal Kembali</td>
 			</tr>';
 
 foreach ($data as $row) {
@@ -147,8 +147,8 @@ foreach ($data as $row) {
 					<td style="text-align:center; font-family:sans-serif; font-size:12px;">' . $row->id_anggota . '</td>
 					<td style="text-align:center; font-family:sans-serif; font-size:12px; text-transform: capitalize;">' . $row->nama . '</td>
 					<td style="text-align:center; font-family:sans-serif; font-size:12px; text-transform: capitalize;">' . $row->judul_buku . '</td>
-					<td style="text-align:center; font-family:sans-serif; font-size:12px;">' . mediumdate_indo($row->tgl_pinjam) . '</td>
-					<td style="text-align:center; font-family:sans-serif; font-size:12px;">' . mediumdate_indo($row->tgl_kembali) . '</td>
+					<td style="text-align:center; font-family:sans-serif; font-size:12px;">' . slashdate_indo($row->tgl_pinjam) . '</td>
+					<td style="text-align:center; font-family:sans-serif; font-size:12px;">' . slashdate_indo($row->tgl_kembali) . '</td>
 				</tr>';
 }
 $table2 .= '</table>';

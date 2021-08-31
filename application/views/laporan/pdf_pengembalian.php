@@ -151,9 +151,9 @@ foreach ($data as $row) {
 					<td style="text-align:center; font-family:sans-serif; font-size:12px;">' . $row->id_anggota . '</td>
 					<td style="text-align:center; font-family:sans-serif; font-size:12px; text-transform: capitalize;">' . $row->nama . '</td>
 					<td style="text-align:center; font-family:sans-serif; font-size:12px; text-transform: capitalize;">' . $row->judul_buku . '</td>
-					<td style="text-align:center; font-family:sans-serif; font-size:12px;">' . mediumdate_indo($row->tgl_pinjam) . '</td>
-					<td style="text-align:center; font-family:sans-serif; font-size:12px;">' . mediumdate_indo($row->tgl_kembali) . '</td>
-					<td style="text-align:center; font-family:sans-serif; font-size:12px;">' . mediumdate_indo($row->tgl_kembalikan) . '</td>
+					<td style="text-align:center; font-family:sans-serif; font-size:12px;">' . slashdate_indo($row->tgl_pinjam) . '</td>
+					<td style="text-align:center; font-family:sans-serif; font-size:12px;">' . slashdate_indo($row->tgl_kembali) . '</td>
+					<td style="text-align:center; font-family:sans-serif; font-size:12px;">' . slashdate_indo($row->tgl_kembalikan) . '</td>
 					<td style="text-align:center; font-family:sans-serif; font-size:12px;">' .  $test   . '</td>
 				</tr>';
 }
